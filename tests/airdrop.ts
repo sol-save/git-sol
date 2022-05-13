@@ -4,13 +4,14 @@ import { GitSol } from "../target/types/git_sol";
 
 export const airDropSol = async (
   pubkey: PublicKey,
-  program: Program<GitSol>
+  program: Program<GitSol>,
+  amt: number
 ) => {
   try {
     const fromAirDropSignature =
       await program.provider.connection.requestAirdrop(
         pubkey,
-        2 * LAMPORTS_PER_SOL
+        amt * LAMPORTS_PER_SOL
       );
     const ar_tx = await program.provider.connection.confirmTransaction(
       fromAirDropSignature

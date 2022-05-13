@@ -29,6 +29,72 @@ export type GitSol = {
           }
         }
       ]
+    },
+    {
+      "name": "createRepo",
+      "accounts": [
+        {
+          "name": "repoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "createUserInput",
+          "type": {
+            "defined": "CreateRepoInput"
+          }
+        }
+      ]
+    },
+    {
+      "name": "createCommit",
+      "accounts": [
+        {
+          "name": "repoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "createCommitInput",
+          "type": {
+            "defined": "CreateCommitInput"
+          }
+        }
+      ]
     }
   ],
   "accounts": [
@@ -38,12 +104,98 @@ export type GitSol = {
         "kind": "struct",
         "fields": [
           {
-            "name": "name",
-            "type": "string"
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "repoCount",
+            "type": "u128"
+          },
+          {
+            "name": "profileInfo",
+            "type": {
+              "defined": "ProfileInfo"
+            }
           },
           {
             "name": "publicKey",
             "type": "publicKey"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "repoAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "publicKey",
+            "type": "publicKey"
+          },
+          {
+            "name": "profileInfo",
+            "type": {
+              "defined": "ProfileInfo"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "repoId",
+            "type": "u128"
+          },
+          {
+            "name": "remote",
+            "type": "string"
+          },
+          {
+            "name": "commits",
+            "type": {
+              "vec": {
+                "defined": "Commit"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Commit",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u128"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProfileInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
           },
           {
             "name": "bio",
@@ -56,14 +208,42 @@ export type GitSol = {
             }
           },
           {
-            "name": "bump",
-            "type": "u8"
+            "name": "avatar",
+            "type": "string"
           }
         ]
       }
-    }
-  ],
-  "types": [
+    },
+    {
+      "name": "CreateRepoInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "bio",
+            "type": "string"
+          },
+          {
+            "name": "socialLinks",
+            "type": {
+              "vec": "string"
+            }
+          },
+          {
+            "name": "avatar",
+            "type": "string"
+          },
+          {
+            "name": "remote",
+            "type": "string"
+          }
+        ]
+      }
+    },
     {
       "name": "CreateUserInput",
       "type": {
@@ -82,6 +262,26 @@ export type GitSol = {
             "type": {
               "vec": "string"
             }
+          },
+          {
+            "name": "avatar",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateCommitInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "type": "string"
           }
         ]
       }
@@ -120,6 +320,72 @@ export const IDL: GitSol = {
           }
         }
       ]
+    },
+    {
+      "name": "createRepo",
+      "accounts": [
+        {
+          "name": "repoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "createUserInput",
+          "type": {
+            "defined": "CreateRepoInput"
+          }
+        }
+      ]
+    },
+    {
+      "name": "createCommit",
+      "accounts": [
+        {
+          "name": "repoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "createCommitInput",
+          "type": {
+            "defined": "CreateCommitInput"
+          }
+        }
+      ]
     }
   ],
   "accounts": [
@@ -129,12 +395,98 @@ export const IDL: GitSol = {
         "kind": "struct",
         "fields": [
           {
-            "name": "name",
-            "type": "string"
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "repoCount",
+            "type": "u128"
+          },
+          {
+            "name": "profileInfo",
+            "type": {
+              "defined": "ProfileInfo"
+            }
           },
           {
             "name": "publicKey",
             "type": "publicKey"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "repoAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "publicKey",
+            "type": "publicKey"
+          },
+          {
+            "name": "profileInfo",
+            "type": {
+              "defined": "ProfileInfo"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "repoId",
+            "type": "u128"
+          },
+          {
+            "name": "remote",
+            "type": "string"
+          },
+          {
+            "name": "commits",
+            "type": {
+              "vec": {
+                "defined": "Commit"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Commit",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u128"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProfileInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
           },
           {
             "name": "bio",
@@ -147,14 +499,42 @@ export const IDL: GitSol = {
             }
           },
           {
-            "name": "bump",
-            "type": "u8"
+            "name": "avatar",
+            "type": "string"
           }
         ]
       }
-    }
-  ],
-  "types": [
+    },
+    {
+      "name": "CreateRepoInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "bio",
+            "type": "string"
+          },
+          {
+            "name": "socialLinks",
+            "type": {
+              "vec": "string"
+            }
+          },
+          {
+            "name": "avatar",
+            "type": "string"
+          },
+          {
+            "name": "remote",
+            "type": "string"
+          }
+        ]
+      }
+    },
     {
       "name": "CreateUserInput",
       "type": {
@@ -173,6 +553,26 @@ export const IDL: GitSol = {
             "type": {
               "vec": "string"
             }
+          },
+          {
+            "name": "avatar",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateCommitInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "type": "string"
           }
         ]
       }
