@@ -1,0 +1,14 @@
+[features]
+seeds = true
+[programs.localnet]
+git_sol = "7PsWEzPcGpdUWdVE4ogMiV9xCKeyjPBsxHcchotwx4cX"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "wallet/my-keypair.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
