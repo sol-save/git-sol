@@ -13,6 +13,7 @@ pub struct UserAccount {
 #[account]
 pub struct RepoAccount {
     pub public_key: Pubkey,
+    pub owner: Pubkey,
     pub profile_info: ProfileInfo,
     pub bump: u8,
     pub repo_id: u128,
@@ -23,7 +24,7 @@ pub struct RepoAccount {
 #[derive(AnchorSerialize, AnchorDeserialize, Default, Clone)]
 pub struct Commit {
     pub id: u128,
-    pub message: String,
+    pub timestamp: String,
     pub hash: String,
 }
 #[derive(AnchorSerialize, AnchorDeserialize, Default, Clone)]
@@ -52,7 +53,7 @@ pub struct CreateUserInput {
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Default, Clone)]
-pub struct CreateCommitInput {
-    pub message: String,
+pub struct AddCommitInput {
+    pub timestamp: String,
     pub hash: String,
 }

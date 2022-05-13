@@ -46,18 +46,19 @@ pub mod git_sol {
 
         ctx.accounts.user_account.repo_count += 1;
 
+        ctx.accounts.repo_account.owner = ctx.accounts.authority.key();
         Ok(())
     }
-    pub fn create_commit(
-        ctx: Context<CreateCommit>,
-        create_commit_input: CreateCommitInput,
-    ) -> Result<()> {
-        let CreateCommitInput { message, hash } = create_commit_input;
+    pub fn add_commit(ctx: Context<AddCommit>, create_commit_input: AddCommitInput) -> Result<()> {
+        let AddCommitInput { timestamp, hash } = create_commit_input;
         let id = ctx.accounts.repo_account.commits.len() as u128;
-        ctx.accounts
-            .repo_account
-            .commits
-            .push(Commit { message, hash, id });
+        let commit: Commit = Commit {
+            timestamp,
+            hash,
+            id,
+        };
+        ctx.accounts.repo_account.commits.push(commit);
+        require_eq!(ctx.accounts.repo_account.commits.len() as u128, id + 1);
         Ok(())
     }
 }

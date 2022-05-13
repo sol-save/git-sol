@@ -24,8 +24,8 @@ pub struct CreateRepo<'info> {
 }
 
 #[derive(Accounts)]
-pub struct CreateCommit<'info> {
-    #[account(mut,seeds = [b"repo", authority.key().as_ref(),&[user_account.repo_count as u8]], bump= repo_account.bump)]
+pub struct AddCommit<'info> {
+    #[account(mut,seeds = [b"repo", repo_account.owner.key().as_ref(),&[repo_account.repo_id as u8]], bump= repo_account.bump)]
     pub repo_account: Account<'info, RepoAccount>,
 
     #[account(mut,seeds = [b"user", user_account.owner.key().as_ref()], bump= user_account.bump)]

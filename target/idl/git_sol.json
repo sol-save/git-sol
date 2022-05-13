@@ -64,7 +64,7 @@
       ]
     },
     {
-      "name": "createCommit",
+      "name": "addCommit",
       "accounts": [
         {
           "name": "repoAccount",
@@ -91,7 +91,7 @@
         {
           "name": "createCommitInput",
           "type": {
-            "defined": "CreateCommitInput"
+            "defined": "AddCommitInput"
           }
         }
       ]
@@ -138,6 +138,10 @@
             "type": "publicKey"
           },
           {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
             "name": "profileInfo",
             "type": {
               "defined": "ProfileInfo"
@@ -178,7 +182,7 @@
             "type": "u128"
           },
           {
-            "name": "message",
+            "name": "timestamp",
             "type": "string"
           },
           {
@@ -271,12 +275,12 @@
       }
     },
     {
-      "name": "CreateCommitInput",
+      "name": "AddCommitInput",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "message",
+            "name": "timestamp",
             "type": "string"
           },
           {

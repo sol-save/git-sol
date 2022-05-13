@@ -64,7 +64,7 @@ export type GitSol = {
       ]
     },
     {
-      "name": "createCommit",
+      "name": "addCommit",
       "accounts": [
         {
           "name": "repoAccount",
@@ -91,7 +91,7 @@ export type GitSol = {
         {
           "name": "createCommitInput",
           "type": {
-            "defined": "CreateCommitInput"
+            "defined": "AddCommitInput"
           }
         }
       ]
@@ -138,6 +138,10 @@ export type GitSol = {
             "type": "publicKey"
           },
           {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
             "name": "profileInfo",
             "type": {
               "defined": "ProfileInfo"
@@ -178,7 +182,7 @@ export type GitSol = {
             "type": "u128"
           },
           {
-            "name": "message",
+            "name": "timestamp",
             "type": "string"
           },
           {
@@ -271,12 +275,12 @@ export type GitSol = {
       }
     },
     {
-      "name": "CreateCommitInput",
+      "name": "AddCommitInput",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "message",
+            "name": "timestamp",
             "type": "string"
           },
           {
@@ -355,7 +359,7 @@ export const IDL: GitSol = {
       ]
     },
     {
-      "name": "createCommit",
+      "name": "addCommit",
       "accounts": [
         {
           "name": "repoAccount",
@@ -382,7 +386,7 @@ export const IDL: GitSol = {
         {
           "name": "createCommitInput",
           "type": {
-            "defined": "CreateCommitInput"
+            "defined": "AddCommitInput"
           }
         }
       ]
@@ -429,6 +433,10 @@ export const IDL: GitSol = {
             "type": "publicKey"
           },
           {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
             "name": "profileInfo",
             "type": {
               "defined": "ProfileInfo"
@@ -469,7 +477,7 @@ export const IDL: GitSol = {
             "type": "u128"
           },
           {
-            "name": "message",
+            "name": "timestamp",
             "type": "string"
           },
           {
@@ -562,12 +570,12 @@ export const IDL: GitSol = {
       }
     },
     {
-      "name": "CreateCommitInput",
+      "name": "AddCommitInput",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "message",
+            "name": "timestamp",
             "type": "string"
           },
           {
